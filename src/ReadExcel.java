@@ -23,7 +23,7 @@ public class ReadExcel {
                     if (cell == null)
                         continue;
                     if (k == 0) {
-                        user.setUsername(this.getValue(cell));//给username属性赋值
+                        user. setUsername(this.getValue(cell));//给username属性赋值
                     } else if (k == 1) {
                         user.setPassword(this.getValue(cell));//给password属性赋值
                     } else if (k == 2) {
