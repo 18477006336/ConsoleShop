@@ -8,12 +8,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 
 public class ReadUserExcel {
-    public User[] readExcel(InputStream file) {
-        User users[] = null;
+    public User[] readExcel(InputStream in) {
+        User users[]=null;
         try {
-            XSSFWorkbook xw = new XSSFWorkbook(file);
+            XSSFWorkbook xw = new XSSFWorkbook(in);
             XSSFSheet xs = xw.getSheetAt(0);
             users = new User[xs.getLastRowNum()];
             for (int j = 1; j <= xs.getLastRowNum(); j++) {
@@ -43,7 +44,7 @@ public class ReadUserExcel {
     }
 
     private String getValue(XSSFCell cell) {
-        String value;
+        String value = null;
         CellType type = cell.getCellTypeEnum();
 
         switch (type) {
@@ -57,7 +58,9 @@ public class ReadUserExcel {
                 value = cell.getBooleanCellValue() + "";
                 break;
             case NUMERIC:
-                value = cell.getNumericCellValue() + "";
+                DecimalFormat df = new DecimalFormat("#");
+                value = df.format(cell.getBooleanCellValue());
+                System.out.println("处理后的:"+value);
                 break;
             case FORMULA:
                 value = cell.getCellFormula();
