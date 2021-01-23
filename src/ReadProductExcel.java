@@ -77,7 +77,7 @@ public class ReadProductExcel {
     private String getValue(XSSFCell cell) {
         String value;
         CellType type = cell.getCellTypeEnum();
-
+        DecimalFormat df=new DecimalFormat("#");
         switch (type) {
             case STRING:
                 value = cell.getStringCellValue();
@@ -89,7 +89,6 @@ public class ReadProductExcel {
                 value = cell.getBooleanCellValue() + "";
                 break;
             case NUMERIC:
-                DecimalFormat df = new DecimalFormat("#");
                 value = df.format(cell.getNumericCellValue());
                 System.out.println("处理后的：" + value);
                 break;
